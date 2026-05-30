@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Selamat datang Di Web Auto Order By Dell</title>
+<title>Dell Official - Auto Order</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -23,12 +23,94 @@ body{
  color:var(--text);
  overflow-x:hidden;
 }
+
+/* WELCOME SCREEN - Card dengan video persegi panjang */
+.welcome-screen{
+ position:fixed;
+ top:0;
+ left:0;
+ width:100vw;
+ height:100vh;
+ z-index:10000;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ background:radial-gradient(circle at top,#2b0a52,#05000a 70%);
+}
+.welcome-card{
+ max-width:400px;
+ width:90%;
+ background:linear-gradient(160deg,#2a0c4d,#12001f);
+ border-radius:32px;
+ padding:20px;
+ border:2px solid var(--neon);
+ box-shadow:0 0 40px rgba(177,76,255,0.6);
+ text-align:center;
+}
+.welcome-title{
+ font-size:24px;
+ font-weight:bold;
+ color:#c77dff;
+ margin-bottom:8px;
+ letter-spacing:1px;
+}
+.welcome-version{
+ font-size:14px;
+ color:#c77dff;
+ margin-bottom:20px;
+ letter-spacing:1px;
+}
+.video-container{
+ width:100%;
+ aspect-ratio:16/9;
+ border-radius:20px;
+ overflow:hidden;
+ border:2px solid var(--neon);
+ margin-bottom:25px;
+ background:#000;
+}
+.video-container video{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+}
+.welcome-btn{
+ background:linear-gradient(135deg,#2a0c4d,#12001f);
+ border:2px solid var(--neon);
+ border-radius:60px;
+ padding:12px 24px;
+ font-size:20px;
+ font-weight:bold;
+ color:var(--neon);
+ cursor:pointer;
+ transition:0.3s;
+ width:80%;
+ margin:0 auto;
+ display:block;
+ font-family:inherit;
+}
+.welcome-btn:hover{
+ transform:scale(1.03);
+ background:linear-gradient(135deg,#3a1c6e,#1a0430);
+ box-shadow:0 0 20px var(--neon);
+ color:white;
+}
+
+/* Loader Screen */
 .loader-screen{
  position:fixed;top:0;left:0;width:100vw;height:100vh;
  background:var(--bg);display:flex;justify-content:center;align-items:center;z-index:9999;
  flex-direction:column;
+ display:none;
 }
 .loader-screen h2{color:var(--neon);margin-top:16px;}
+.loader{
+ width:42px;height:42px;border:4px solid #2e0b52;border-top:4px solid var(--neon);
+ border-radius:50%;animation:spin 1s linear infinite;margin:16px auto
+}
+@keyframes spin{100%{transform:rotate(360deg)}}
+
+/* APP (main content) */
 .app{
  width:100vw;
  min-height:100vh;
@@ -138,11 +220,6 @@ input[type="file"]{
  box-shadow:0 0 20px #00e676;
 }
 .btn:disabled{opacity:.4;box-shadow:none}
-.loader{
- width:42px;height:42px;border:4px solid #2e0b52;border-top:4px solid var(--neon);
- border-radius:50%;animation:spin 1s linear infinite;margin:16px auto
-}
-@keyframes spin{100%{transform:rotate(360deg)}}
 .nav{
  position:fixed;bottom:0;left:0;right:0;
  background:#0b0116;display:flex;
@@ -191,7 +268,6 @@ hr{
  margin-bottom:4px;
  color:#c77dff;
 }
-/* TAMBAHAN: Style untuk card developer */
 .dev-card {
   text-align: center;
 }
@@ -226,9 +302,250 @@ hr{
   margin-top: 12px;
   opacity: 0.9;
 }
+.start-bot-card {
+  text-align: center;
+  background: linear-gradient(135deg, #2a0c4d, #1a0630);
+  border: 1px solid var(--neon);
+  margin: 14px;
+}
+.start-bot-card p {
+  margin-bottom: 12px;
+}
+.start-bot-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #b14cff, #7b2cff);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 8px 0;
+  transition: 0.3s;
+}
+.start-bot-link:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px var(--neon);
+}
+.id-guide {
+  background: #0a0114;
+  padding: 12px;
+  border-radius: 16px;
+  margin-top: 12px;
+  font-size: 13px;
+  text-align: left;
+}
+.id-guide ol {
+  margin-left: 20px;
+  margin-top: 8px;
+}
+.id-guide li {
+  margin: 5px 0;
+}
+.id-guide code {
+  background: #2a0c4d;
+  padding: 2px 8px;
+  border-radius: 8px;
+  color: #ffcc44;
+}
+.error-message {
+  color: #ff8888;
+  background: rgba(255, 68, 68, 0.2);
+  padding: 10px;
+  border-radius: 12px;
+  margin: 10px 0;
+  font-size: 13px;
+  border-left: 3px solid #ff4444;
+}
+
+/* ============ STYLE CHAT AI ============ */
+.ai-modal {
+  position: fixed;
+  bottom: 80px;
+  left: 10px;
+  right: 10px;
+  background: linear-gradient(160deg, #1a0630, #0a0014);
+  border-radius: 20px;
+  border: 2px solid #b14cff;
+  box-shadow: 0 0 30px rgba(177,76,255,0.5);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  backdrop-filter: blur(10px);
+}
+.ai-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #6d2db6;
+}
+.ai-header h3 {
+  color: #b14cff;
+  margin: 0;
+}
+.ai-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+.ai-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  min-height: 300px;
+  max-height: 350px;
+}
+.ai-message-user {
+  background: #2a0c4d;
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  text-align: right;
+}
+.ai-message-bot {
+  background: #1a0630;
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border-left: 3px solid #b14cff;
+}
+.ai-loading {
+  background: #0a0114;
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+.ai-input-area {
+  padding: 15px;
+  border-top: 1px solid #6d2db6;
+  display: flex;
+  gap: 10px;
+}
+.ai-input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #b14cff;
+  background: #12001f;
+  color: white;
+  font-family: inherit;
+}
+.ai-send {
+  background: linear-gradient(135deg, #b14cff, #7b2cff);
+  border: none;
+  border-radius: 12px;
+  padding: 0 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.loader-small {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #2e0b52;
+  border-top: 2px solid #b14cff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* ============ STYLE THANKS TO ============ */
+.thanks-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+  border: 2px solid #b14cff;
+}
+.popup-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center;
+  visibility: hidden; z-index: 10001;
+}
+.popup-card {
+  background: linear-gradient(160deg,#2a0c4d,#0a0014);
+  border-radius: 30px;
+  padding: 25px;
+  text-align: center;
+  width: 280px;
+  position: relative;
+  border: 2px solid #b14cff;
+  box-shadow: 0 0 40px rgba(177,76,255,0.6);
+}
+.close {
+  position: absolute; top: 10px; right: 18px;
+  cursor: pointer; font-size: 28px; color: white;
+}
+.popup-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 3px solid #b14cff;
+}
+.wa-btn, .tele-btn {
+  border: none;
+  padding: 8px 18px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 5px;
+}
+.wa-btn { background: #25D366; }
+.tele-btn { background: #0088cc; }
+.thanks-slider {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 14px;
+}
+.thanks-card {
+  flex: 0 0 70%;
+  max-width: 180px;
+  scroll-snap-align: start;
+  background: linear-gradient(160deg,#2a0c4d,#12001f);
+  padding: 15px;
+  border-radius: 18px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.thanks-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 25px rgba(177,76,255,0.5);
+}
 </style>
 </head>
 <body>
+
+<!-- WELCOME SCREEN - Card dengan video Catbox terbaru -->
+<div id="welcomeScreen" class="welcome-screen">
+  <div class="welcome-card">
+    <div class="welcome-title">Dell Official - Auto Order</div>
+    <div class="welcome-version">Version 1.0.0</div>
+    <div class="video-container">
+      <video id="welcomeVideo" autoplay muted loop playsinline preload="auto" crossorigin="anonymous">
+        <source src="https://files.catbox.moe/rit7wq.mp4" type="video/mp4">
+        <!-- Fallback jika video catbox gagal -->
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <button id="welcomeBtn" class="welcome-btn">Masuk</button>
+  </div>
+</div>
 
 <!-- LOADER SCREEN -->
 <div class="loader-screen" id="loaderScreen">
@@ -236,8 +553,7 @@ hr{
  <h2>Sabar Lagi Loading</h2>
 </div>
 
-<audio id="bgMusic" src="https://files.catbox.moe/cyoa8d.mp3" autoplay loop></audio>
-
+<!-- APP (konten utama) -->
 <div class="app" id="app">
 
 <!-- Owner Foto -->
@@ -246,24 +562,71 @@ hr{
 </div>
 <div class="owner-info card">
  <b>Dell official</b><br>
- <a href="https://t.me/DelSigma">@DelSigma</a>
+ <a href="https://t.me/Youwpiw">@Youwpiw</a>
  <p style="margin-top:6px;opacity:.8;font-size:14px">
   Selamat datang di Toko Auto Order Dell. Web ini dibuat untuk mempermudah order, akses tools bot, dan info restock produk. <br>
   💜 <strong>METODE PEMBAYARAN: QRIS PRIBADI + BUKTI TRANSFER</strong> <br>
-  Scan QRIS, transfer sesuai nominal, lalu upload bukti transfer & isi jumlah. Bukti akan otomatis dikirim ke Owner via Telegram untuk verifikasi.
+  Scan QRIS, transfer sesuai nominal, lalu upload bukti transfer & isi jumlah.
  </p>
+</div>
+
+<!-- ========== TOMBOL AI & MUSIC (DI ATAS THANKS TO) ========== -->
+<div class="card" style="text-align: center; padding: 15px;">
+  <button id="inlineAiBtn" class="btn" style="background: linear-gradient(135deg, #b14cff, #7b2cff); margin-bottom: 12px; width: 100%;">
+    🤖 Tanya AI Assistant
+  </button>
+  <button id="inlineMusicBtn" class="btn" style="background: #1a0630; border: 1px solid #b14cff; color: #c77dff; width: 100%;">
+    🎵 Play Music
+  </button>
+</div>
+
+<!-- ========== THANKS TO SECTION ========== -->
+<div class="card" id="thanksBox">
+ <h3 style="text-align:center; margin-bottom:10px">🙏 THANKS TO</h3>
+ <div class="thanks-slider" id="thanksSlider"></div>
+</div>
+
+<!-- Popup untuk detail kontributor -->
+<div id="thanksPopup" class="popup-overlay">
+ <div class="popup-card">
+   <span class="close" onclick="closeThanksPopup()">&times;</span>
+   <img id="popupAvatar" class="popup-avatar">
+   <div id="popupName" class="name" style="font-size:1.2em; font-weight:bold; margin:10px 0 5px;"></div>
+   <div id="popupRole" class="role" style="color:#c77dff; margin-bottom:15px;"></div>
+   <div class="buttons" id="popupButtons"></div>
+ </div>
+</div>
+
+<!-- START BOT CARD -->
+<div class="card start-bot-card">
+  <p>⚠️ <strong style="color:#ffcc44;">SEBELUM ORDER, WAJIB START BOT DULU!</strong> ⚠️</p>
+  <a href="https://t.me/Delltoko_bot?start=order" target="_blank" class="start-bot-link">
+    🤖 KLIK START BOT DULU 🤖
+  </a>
+  <p style="font-size:12px; margin-top:8px;">Klik link di atas, lalu tekan START di Telegram</p>
+  
+  <div class="id-guide">
+    <strong>📌 CARA DAPETIN CHAT ID:</strong>
+    <ol>
+      <li>Setelah START bot, kirim pesan: <code>/id</code> ke bot</li>
+      <li>Bot akan membalas dengan <strong>Chat ID</strong> (contoh: <code>7973367718</code>)</li>
+      <li>Copy Chat ID tersebut</li>
+      <li>Tempelkan di kolom "Chat ID" saat order</li>
+    </ol>
+    <p style="margin-top:8px; color:#c77dff;">✅ Chat ID adalah kode angka unik untuk akun Telegram kamu!</p>
+  </div>
 </div>
 
 <!-- Connect Developer & Channel -->
 <div class="card dev-card">
   <h3 style="text-align:center; margin-bottom:8px;">🤝 Connect with Developer</h3>
   <div class="links">
-    <a href="https://t.me/DelSigma" target="_blank">💬 Telegram Developer</a>
-    <a href="https://t.me/delltesting" target="_blank">📢 Telegram Channel</a>
+    <a href="https://t.me/Youwpiw" target="_blank">💬 Telegram Developer</a>
+    <a href="https://t.me/informasidellnxzy" target="_blank">📢 Telegram Channel</a>
     <a href="https://whatsapp.com/channel/0029VbCLhTnCXC3S5gbZpF3h" target="_blank">📢 WhatsApp Channel</a>
   </div>
   <div class="info-text">
-    ⚡ Gabung channel untuk info update, promo, dan dukungan. Hubungi developer via Telegram jika ada kendala.
+    ⚡ Gabung channel untuk info update, promo, dan dukungan.
   </div>
 </div>
 
@@ -276,19 +639,19 @@ hr{
 
 <!-- BUY -->
 <div class="card" id="buyBox" style="display:none">
- <input id="buyer" placeholder="Username Telegram (tanpa @)" autocomplete="off">
+ <input id="buyerChatId" placeholder="Chat ID Telegram (contoh: 7973367718)" autocomplete="off" type="number">
+ <div id="chatIdError" class="error-message" style="display:none;"></div>
  <button class="btn" onclick="startPayment()">💳 LANJUTKAN KE QRIS</button>
  <button class="btn btn-danger" onclick="closeBuyBox()">BATAL</button>
 </div>
 
-<!-- PAYMENT (QRIS + UPLOAD BUKTI) -->
+<!-- PAYMENT -->
 <div class="card" id="payBox" style="display:none;text-align:center">
  <h3 id="payTitle">💜 SCAN QRIS PRIBADI</h3>
  <div id="qrisArea" style="margin:15px 0;"></div>
  <div id="paymentLoader" class="loader" style="display:none"></div>
- <p id="status" style="font-size:13px; margin:10px 0"></p>
+ <div id="status" style="font-size:13px; margin:10px 0"></div>
  
- <!-- FORM UPLOAD BUKTI & NOMINAL -->
  <div id="proofFormArea">
    <div class="form-group">
      <label>📸 Upload Bukti Transfer (Foto/SS)</label>
@@ -300,7 +663,7 @@ hr{
      <input type="number" id="paidAmount" placeholder="Masukkan nominal transfer" step="1000">
    </div>
    <button class="btn btn-warning" id="submitProofBtn" onclick="sendPaymentProof()">📤 KIRIM BUKTI & KONFIRMASI</button>
-   <p class="text-small" style="margin-top:8px;">Setelah transfer, upload bukti dan isi nominal. Bukti akan dikirim ke Owner via Telegram. Link download akan diberikan setelah verifikasi manual.</p>
+   <p class="text-small" style="margin-top:8px;">Setelah transfer, upload bukti dan isi nominal. Link download akan langsung dikirim ke Telegram Anda!</p>
  </div>
  <button class="btn btn-danger" onclick="cancelPayment()" style="margin-top:10px">❌ BATALKAN PEMBAYARAN</button>
 </div>
@@ -311,7 +674,7 @@ hr{
  <div class="tools" id="toolsGrid"></div>
 </div>
 
-</div>
+</div> <!-- end app -->
 
 <div class="nav">
  <div class="active" onclick="showHome()">🏠<br>Home</div>
@@ -319,379 +682,6 @@ hr{
  <div onclick="showTools()">🛠<br>Tools</div>
 </div>
 
-<script>
-/* ================= KONFIGURASI ================= */
-const GOOGLE_SHEETS_URL = ""; // opsional
-const TELEGRAM_BOT_TOKEN = "8363459372:AAE18I7xCqFdkGD7poh_wjKbRr3yMQc7Zqw"; // Isi dengan token bot kamu
-const TELEGRAM_CHAT_ID = "7973367718";   // Isi dengan chat ID kamu
-
-/* ================= PRODUK & TOOLS ================= */
-const products = [
- { name:"SCRIPT BOT PREMIUM", price: 25000, stock: 5, desc:"Bot WhatsApp siap pakai, ringan & stabil. Auto reply + anti call.", link:"https://mediafire.com/file/premium.zip" },
- { name:"SCRIPT BOT VIP", price: 50000, stock: 3, desc:"Versi full fitur: payment gateway, menu interaktif, cocok jualan.", link:"https://mediafire.com/file/vip.zip" },
-{ name:"tes sc", price: 1500, stock: 7, desc:"Versi full fitur: payment gateway, menu banyk tes.", link:"https://mediafire.com/file/vip.zip" },
-{ name:"tes sc", price: 1500, stock: 7, desc:"Versi full fitur: payment gateway, menu banyk tes.", link:"https://mediafire.com/file/vip.zip" },
-{ name:"tes sc", price: 1500, stock: 7, desc:"Versi full fitur: payment gateway, menu banyk tes.", link:"https://mediafire.com/file/vip.zip" },
-{ name:"tes sc", price: 1500, stock: 7, desc:"Versi full fitur: payment gateway, menu banyk tes.", link:"https://mediafire.com/file/vip.zip" },
- { name:"SCRIPT BOT ULTIMATE", price: 100000, stock: 2, desc:"Full akses + bantuan case + update seumur hidup.", link:"https://mediafire.com/file/ultimate.zip" }
-];
-
-const extraProducts = [
- { name:"Script Music Bot", price: 300, stock: 3, desc:"Bot auto musik & audio streaming (YouTube, Spotify)", link:"https://mediafire.com/file/musicbot.zip"},
- { name:"tes sc", price: 1500, stock: 7, desc:"Versi full fitur: payment gateway, menu banyk tes.", link:"https://mediafire.com/file/vip.zip" },
- { name:"tes sc", price: 1500, stock: 7, desc:"Versi full fitur: payment gateway, menu banyk tes.", link:"https://mediafire.com/file/vip.zip" },
- { name:"tes sc", price: 1500, stock: 7, desc:"Versi full fitur: payment gateway, menu banyk tes.", link:"https://mediafire.com/file/vip.zip" },
- { name:"tes sc", price: 1500, stock: 7, desc:"Versi full fitur: payment gateway, menu banyk tes.", link:"https://mediafire.com/file/vip.zip" },
- { name:"tes sc", price: 1500, stock: 7, desc:"Versi full fitur: payment gateway, menu banyk tes.", link:"https://mediafire.com/file/vip.zip" },
- { name:"Script Downloader Pro", price: 40000, stock: 2, desc:"Bot downloader multi media: TikTok, IG, FB, YT.", link:"https://mediafire.com/file/dlpro.zip"}
-];
-
-const tools = [
- {name:"IQC iPhone",action:"iqc"},
- {name:"Auto Menu",action:"menu"},
- {name:"Downloader",action:"dl"},
- {name:"AI Reply",action:"ai"}
-];
-
-/* ================= GLOBAL VARIABLES ================= */
-let selectedProductIndex = 0;
-let selectedProductObj = null;
-let paymentActive = false;
-let pendingTransaction = null;
-
-// QRIS DEFAULT (Catbox)
-const DEFAULT_QRIS_URL = "https://files.catbox.moe/5wwwjd.jpg";
-
-/* ================= HELPER ================= */
-function getMergedProducts() {
-  return [...products, ...extraProducts];
-}
-
-function getProductByIndex(idx) {
-  const all = getMergedProducts();
-  return all[idx];
-}
-
-function sendToGoogleSheets(transactionData) {
-  if (!GOOGLE_SHEETS_URL) return;
-  fetch(GOOGLE_SHEETS_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(transactionData)
-  }).catch(err => console.warn("Gagal kirim ke Google Sheets:", err));
-}
-
-async function sendProofToTelegram(imageFile, caption) {
-  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
-    throw new Error("Bot Telegram belum dikonfigurasi. Isi TELEGRAM_BOT_TOKEN dan TELEGRAM_CHAT_ID pada script.");
-  }
-  
-  const formData = new FormData();
-  formData.append('chat_id', TELEGRAM_CHAT_ID);
-  formData.append('caption', caption);
-  formData.append('photo', imageFile, imageFile.name);
-  
-  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`;
-  const response = await fetch(url, {
-    method: 'POST',
-    body: formData
-  });
-  const result = await response.json();
-  if (!result.ok) {
-    throw new Error(`Telegram API error: ${result.description}`);
-  }
-  return result;
-}
-
-function renderProducts() {
-  const slider = document.getElementById("slider");
-  const extraSlider = document.getElementById("extraProducts");
-  slider.innerHTML = "";
-  products.forEach((p, i) => {
-    slider.innerHTML += `
-      <div class="product">
-        <h3>${p.name}</h3>
-        <div class="price">Rp ${p.price.toLocaleString("id-ID")}</div>
-        <p>${p.desc}</p>
-        <div class="stock">📦 Stock: ${p.stock}</div>
-        <button class="btn" ${p.stock <= 0 ? "disabled" : ""} onclick="selectProduct(${i})">🛒 BELI</button>
-      </div>`;
-  });
-  extraSlider.innerHTML = "";
-  extraProducts.forEach((p, i) => {
-    const realIdx = products.length + i;
-    extraSlider.innerHTML += `
-      <div class="product">
-        <h3>${p.name}</h3>
-        <div class="price">Rp ${p.price.toLocaleString("id-ID")}</div>
-        <p>${p.desc}</p>
-        <div class="stock">📦 Stock: ${p.stock}</div>
-        <button class="btn" ${p.stock <= 0 ? "disabled" : ""} onclick="selectProduct(${realIdx})">🛒 BELI</button>
-      </div>`;
-  });
-}
-
-function selectProduct(idx) {
-  selectedProductIndex = idx;
-  selectedProductObj = getProductByIndex(idx);
-  document.getElementById("buyBox").style.display = "block";
-  document.getElementById("buyer").value = "";
-  document.getElementById("payBox").style.display = "none";
-  document.getElementById("imagePreview").innerHTML = "";
-  document.getElementById("proofImage").value = "";
-  document.getElementById("paidAmount").value = "";
-}
-
-function closeBuyBox() {
-  document.getElementById("buyBox").style.display = "none";
-}
-
-function startPayment() {
-  const buyerName = document.getElementById("buyer").value.trim();
-  if (!buyerName) {
-    alert("Isi username Telegram kamu dulu!");
-    return;
-  }
-  if (!selectedProductObj) {
-    alert("Pilih produk terlebih dahulu.");
-    return;
-  }
-
-  document.getElementById("buyBox").style.display = "none";
-  const payBox = document.getElementById("payBox");
-  payBox.style.display = "block";
-  
-  const qrisArea = document.getElementById("qrisArea");
-  qrisArea.innerHTML = `<img src="${DEFAULT_QRIS_URL}" alt="QRIS Pribadi" style="max-width:100%; max-height:300px; border-radius:20px; border:2px solid #b14cff; background:#fff; padding:8px;">`;
-  
-  document.getElementById("status").innerHTML = `💜 Scan QRIS di atas<br>Total: <strong>Rp ${selectedProductObj.price.toLocaleString("id-ID")}</strong><br>Pembeli: @${buyerName}<br><span style="color:#ffcc44;">Setelah transfer, upload bukti dan isi nominal dibawah.</span>`;
-  
-  const paidAmountInput = document.getElementById("paidAmount");
-  paidAmountInput.value = selectedProductObj.price;
-  
-  pendingTransaction = {
-    buyer: buyerName,
-    product: selectedProductObj,
-    timestamp: Date.now()
-  };
-  paymentActive = true;
-  
-  document.getElementById("proofImage").value = "";
-  document.getElementById("imagePreview").innerHTML = "";
-  const submitBtn = document.getElementById("submitProofBtn");
-  submitBtn.disabled = false;
-  submitBtn.innerText = "📤 KIRIM BUKTI & KONFIRMASI";
-  document.getElementById("proofFormArea").style.display = "block";
-}
-
-async function sendPaymentProof() {
-  if (!paymentActive || !pendingTransaction) {
-    alert("Tidak ada transaksi aktif. Silakan pilih produk lagi.");
-    return;
-  }
-  
-  const fileInput = document.getElementById("proofImage");
-  const file = fileInput.files[0];
-  if (!file) {
-    alert("Harap upload bukti transfer terlebih dahulu (foto/ screenshot).");
-    return;
-  }
-  
-  if (!file.type.startsWith("image/")) {
-    alert("File harus berupa gambar (jpg, png, jpeg).");
-    return;
-  }
-  
-  if (file.size > 5 * 1024 * 1024) {
-    alert("Ukuran gambar terlalu besar (maksimal 5MB).");
-    return;
-  }
-  
-  const paidAmountRaw = document.getElementById("paidAmount").value;
-  const paidAmount = parseInt(paidAmountRaw);
-  if (isNaN(paidAmount) || paidAmount <= 0) {
-    alert("Masukkan nominal yang dibayar (angka positif).");
-    return;
-  }
-  
-  const expectedPrice = pendingTransaction.product.price;
-  if (paidAmount < expectedPrice) {
-    alert(`Nominal yang dibayar kurang dari harga produk (Rp ${expectedPrice.toLocaleString("id-ID")}). Harap transfer sesuai nominal.`);
-    return;
-  }
-  
-  const submitBtn = document.getElementById("submitProofBtn");
-  submitBtn.disabled = true;
-  submitBtn.innerText = "⏳ Mengirim bukti...";
-  
-  try {
-    const timeStr = new Date(pendingTransaction.timestamp).toLocaleString("id-ID");
-    const caption = `✅ *BUKTI PEMBAYARAN MASUK* ✅\n\n` +
-                    `🛍️ *Produk:* ${pendingTransaction.product.name}\n` +
-                    `👤 *Pembeli:* @${pendingTransaction.buyer}\n` +
-                    `💰 *Harga:* Rp ${expectedPrice.toLocaleString("id-ID")}\n` +
-                    `💵 *Dibayar:* Rp ${paidAmount.toLocaleString("id-ID")}\n` +
-                    `🕒 *Waktu Order:* ${timeStr}\n` +
-                    `🔗 *Link Produk:* ${pendingTransaction.product.link}\n\n` +
-                    `⚠️ *Verifikasi manual diperlukan. Segera cek dan kirim link download ke pembeli.*`;
-    
-    await sendProofToTelegram(file, caption);
-    
-    const sheetData = {
-      buyer: pendingTransaction.buyer,
-      product_name: pendingTransaction.product.name,
-      price: pendingTransaction.product.price,
-      paid_amount: paidAmount,
-      timestamp: timeStr,
-      status: "menunggu_verifikasi",
-      link: pendingTransaction.product.link
-    };
-    sendToGoogleSheets(sheetData);
-    
-    document.getElementById("status").innerHTML = `✅ *BUKTI TERKIRIM KE OWNER* ✅<br><br>Terima kasih @${pendingTransaction.buyer}. Bukti pembayaran sudah dikirim via Telegram. Owner akan segera memverifikasi dan mengirimkan link download ke Telegram Anda.<br><br>⏳ Mohon tunggu maksimal 15 menit. Hubungi @DelSigma jika belum mendapat link.`;
-    
-    document.getElementById("proofFormArea").style.display = "none";
-    submitBtn.disabled = true;
-    submitBtn.innerText = "✓ BUKTI TERKIRIM";
-    
-    const all = getMergedProducts();
-    if (all[selectedProductIndex] && all[selectedProductIndex].stock > 0) {
-      all[selectedProductIndex].stock--;
-      renderProducts();
-    }
-    
-    // Buka chat Telegram ke pembeli (opsional)
-    window.open(`https://t.me/${pendingTransaction.buyer}`, "_blank");
-    
-    paymentActive = false;
-    pendingTransaction = null;
-    
-  } catch (error) {
-    console.error("Error kirim ke Telegram:", error);
-    alert(`Gagal mengirim bukti: ${error.message}\nPastikan TELEGRAM_BOT_TOKEN dan TELEGRAM_CHAT_ID sudah benar.`);
-    submitBtn.disabled = false;
-    submitBtn.innerText = "📤 KIRIM BUKTI & KONFIRMASI";
-  }
-}
-
-function cancelPayment() {
-  paymentActive = false;
-  pendingTransaction = null;
-  document.getElementById("payBox").style.display = "none";
-  document.getElementById("buyBox").style.display = "none";
-  document.getElementById("status").innerHTML = "";
-  document.getElementById("qrisArea").innerHTML = "";
-  document.getElementById("proofFormArea").style.display = "block";
-  document.getElementById("submitProofBtn").disabled = false;
-  document.getElementById("submitProofBtn").innerText = "📤 KIRIM BUKTI & KONFIRMASI";
-  document.getElementById("proofImage").value = "";
-  document.getElementById("imagePreview").innerHTML = "";
-}
-
-document.getElementById("proofImage").addEventListener("change", function(e) {
-  const file = e.target.files[0];
-  const previewDiv = document.getElementById("imagePreview");
-  previewDiv.innerHTML = "";
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function(ev) {
-      const img = document.createElement("img");
-      img.src = ev.target.result;
-      img.style.maxWidth = "100%";
-      img.style.maxHeight = "150px";
-      img.style.borderRadius = "12px";
-      img.style.marginTop = "8px";
-      img.style.border = "1px solid #b14cff";
-      previewDiv.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-  }
-});
-
-const toolsGrid = document.getElementById("toolsGrid");
-tools.forEach(t => {
-  const div = document.createElement("div");
-  div.className = "tool-box";
-  div.innerText = t.name;
-  div.onclick = () => useTool(t.action);
-  toolsGrid.appendChild(div);
-});
-
-function useTool(action) {
-  if (action === "iqc") {
-    const teks = prompt("Masukkan teks untuk IQC iPhone (brat style):");
-    if (!teks) return;
-    const url = `https://brat.siputzx.my.id/iphone-quoted?batteryPercentage=${Math.floor(Math.random() * 80) + 20}&carrierName=INDOSAT&messageText=${encodeURIComponent(teks)}&emojiStyle=apple`;
-    const win = window.open(url, "_blank");
-    if (win) {
-      setTimeout(() => {
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "iqc_iphone.png";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      }, 1000);
-    } else alert("Popup terblokir, izinkan popup untuk download otomatis.");
-  } 
-  else if (action === "menu") {
-    alert("✨ AUTO MENU BOT\nFitur akan segera hadir di update berikutnya.\nGunakan command /menu di bot nanti.");
-  }
-  else if (action === "dl") {
-    alert("📥 DOWNLOADER\nFitur untuk mendownload media dari link. Masih dalam pengembangan.");
-  }
-  else if (action === "ai") {
-    alert("🤖 AI REPLY\nBot akan membalas pesan dengan AI (Gemini) dalam versi selanjutnya.");
-  }
-  else {
-    alert(`Fitur ${action} dalam pengembangan.`);
-  }
-}
-
-function showHome() {
-  document.getElementById("productBox").style.display = "none";
-  document.getElementById("toolsBox").style.display = "none";
-  document.querySelector(".owner-info").style.display = "block";
-  document.querySelector(".owner").style.display = "flex";
-  document.getElementById("buyBox").style.display = "none";
-  document.getElementById("payBox").style.display = "none";
-}
-function showProducts() {
-  document.getElementById("productBox").style.display = "block";
-  document.getElementById("toolsBox").style.display = "none";
-  document.querySelector(".owner-info").style.display = "none";
-  document.querySelector(".owner").style.display = "flex";
-  document.getElementById("buyBox").style.display = "none";
-  document.getElementById("payBox").style.display = "none";
-}
-function showTools() {
-  document.getElementById("productBox").style.display = "none";
-  document.getElementById("toolsBox").style.display = "block";
-  document.querySelector(".owner-info").style.display = "none";
-  document.querySelector(".owner").style.display = "flex";
-  document.getElementById("buyBox").style.display = "none";
-  document.getElementById("payBox").style.display = "none";
-}
-
-const navs = document.querySelectorAll(".nav div");
-function setActive(index) {
-  navs.forEach((nav, i) => {
-    if(i === index) nav.classList.add("active");
-    else nav.classList.remove("active");
-  });
-}
-window.showHome = () => { showHome(); setActive(0); };
-window.showProducts = () => { showProducts(); setActive(1); };
-window.showTools = () => { showTools(); setActive(2); };
-
-renderProducts();
-setTimeout(() => {
-  document.getElementById("loaderScreen").style.display = "none";
-  document.getElementById("app").style.display = "block";
-  showHome();
-}, 1800);
-setActive(0);
-</script>
+<script src="script.js"></script>
 </body>
-</html>         
+</html>
